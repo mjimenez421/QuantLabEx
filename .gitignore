@@ -1,0 +1,4 @@
+# ignore the following folders
+/__pycache__
+/QuantLabEx_Marie_Jimenez.egg-info
+/src/__pycache__
