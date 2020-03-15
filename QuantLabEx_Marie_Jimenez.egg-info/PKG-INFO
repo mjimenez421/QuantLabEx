@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: QuantLabEx-Marie-Jimenez
+Version: 0.0.1
+Summary: QuantLab SPX
+Home-page: https://github.com/mjimenez421/QuantLabEx.git
+Author: Marie Jimenez
+Author-email: mariemoya99@gmail.com
+License: UNKNOWN
+Description: 
+        Source Code and tests
+        	-found in /src
+        	-input and output file are currently hardcoded
+        
+        Inputs and Outputs
+        	-found in /inputs and /outputs, respectively
+        
+Platform: UNKNOWN
+Requires-Python: >=3.5
+Description-Content-Type: text
