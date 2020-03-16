@@ -30,6 +30,10 @@ class OutputBuilder:
         except:
             print("output file creation error")
     
+    # Finds if the symbol is currently in output
+    # Returns the location of the symbol and the old data, if in the output
+    # OR the location to insert the symbol, if between symbols in output
+    # AND the method of insertion or update
     def find_in_output(self, symbol):
         self.output.seek(0)
         value = None
@@ -64,6 +68,7 @@ class OutputBuilder:
                 int_avg += 1
         return int_avg
 
+    # Find the max interval between timestamps
     def max_interval(self, old_timeinfo, new_timestamp):
         old_timestamp = int(old_timeinfo[0])
         time_max = old_timeinfo[1]
@@ -73,6 +78,7 @@ class OutputBuilder:
         else:
             return time_max
 
+    # Creates a row of output data from input data
     def build_row(self, line, max):
         avg = self.rnd_avg(
                            int(line[OutputBuilder.__iPrice]),
@@ -84,6 +90,7 @@ class OutputBuilder:
                   ]
         return new_row
 
+    # Updates or inserts a row in alphabetical location and writes to the output.csv
     def insert_line(self, line, location, method):
         # In a scenario where the output file is too large for memory,
         # write lines to an external file and rename file at end of process
@@ -106,6 +113,7 @@ class OutputBuilder:
         self.output.seek(0)
         self.writer.writerows(temp_list)
 
+    # Creates an updated row of output data for a symbol
     def update_line(self, line, location, old_row):
         symbol = line[OutputBuilder.__iSymbol]
         new_timestamp = line[OutputBuilder.__iTime]
@@ -126,6 +134,7 @@ class OutputBuilder:
         new_row = [symbol, time_max, quantity, avg, price_max]
         self.insert_line(new_row, location, "update")
 
+    # Called by an outside function to process a line of input data
     def process_line(self, line):
         symbol = line[OutputBuilder.__iSymbol]
         line_num, method, old_row = self.find_in_output(symbol)
