@@ -52,6 +52,8 @@ class OutputBuilder:
         return value, method, old_row
 
     # Creates an average, rounded, using the round even rule
+    # Round even is commonly used in the sciences to reduce
+    # error between iterations of calculations
     def rnd_avg(self, sum, count):
         dec_avg = sum/count
         int_avg = int(sum/count)
